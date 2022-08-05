@@ -18,6 +18,7 @@
       body {
         background-color: black;
         color: #fafafa;
+        transition: background-color 100ms ease-in-out;
       }
     </style>
   </head>
@@ -37,8 +38,12 @@
           margin-left: 4vw;
         "
       >
-        <h2 style="font-weight: normal; font-size: 4vw">Welcome to</h2>
-        <h1 style="font-size: 13vw">ASSEMBLE</h1>
+        <h2 style="font-weight: normal; font-size: 4vw; margin-bottom: -2vw">
+          Welcome to
+        </h2>
+        <h1 style="font-size: 13vw; -webkit-text-stroke: 0.2vw black">
+          ASSEMBLE
+        </h1>
       </div>
     </div>
 
@@ -52,6 +57,9 @@
         jsConfetti.addConfetti({
           emojis: [emoji],
         });
+      });
+      socket.on("color", (color) => {
+        document.body.style.backgroundColor = color;
       });
     </script>
   </body>
