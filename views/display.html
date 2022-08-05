@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+      }
+
+      body {
+        background-color: black;
+        color: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center; justify-content: center">
+      <img
+        style="width: 25vw"
+        src="https://cloud-aqi7glm0w-hack-club-bot.vercel.app/0qr-code__1_.png"
+      />
+
+      <div
+        style="
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-left: 4vw;
+        "
+      >
+        <h2 style="font-weight: normal; font-size: 4vw">Welcome to</h2>
+        <h1 style="font-size: 7vw">Hack Club Assemble</h1>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const jsConfetti = new JSConfetti();
+
+      socket.on("emoji", (emoji) => {
+        jsConfetti.addConfetti({
+          emojis: [emoji],
+        });
+      });
+    </script>
+  </body>
+</html>

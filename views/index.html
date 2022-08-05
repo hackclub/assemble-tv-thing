@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const picker = new EmojiMart.Picker({
+        onEmojiSelect({ native: emoji }) {
+          socket.emit("emoji", emoji);
+        },
+      });
+
+      picker.style.margin = "0 auto";
+
+      document.body.appendChild(picker);
+    </script>
+  </body>
+</html>
