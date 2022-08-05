@@ -19,6 +19,14 @@ io.on("connection", (socket) => {
     color = selectedColor;
     socket.broadcast.emit("color", selectedColor);
   });
+
+  socket.on("message", (message) => {
+    io.emit("messageForReview", message);
+  });
+
+  socket.on("acceptMessage", (message) => {
+    io.emit("message", message);
+  });
 });
 
 app.get("/", (req, res) => {
@@ -27,6 +35,10 @@ app.get("/", (req, res) => {
 
 app.get("/display", (req, res) => {
   res.sendFile("display.html", { root: "./views" });
+});
+
+app.get("/admin", (req, res) => {
+  res.sendFile("admin.html", { root: "./views" });
 });
 
 server.listen(3000, () => {

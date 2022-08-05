@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>secret admin view</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>do not refresh this page</h1>
+    <h3>or you will lose all in-review messages</h3>
+    <ul id="list"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const list = document.getElementById("list");
+
+      socket.on("messageForReview", (message) => {
+        const item = document.createElement("li");
+        item.appendChild(document.createTextNode(message));
+
+        const acceptButton = document.createElement("button");
+        const rejectButton = document.createElement("button");
+
+        acceptButton.innerText = "Accept!";
+        acceptButton.addEventListener("click", () => {
+          socket.emit("acceptMessage", message);
+          item.remove();
+        });
+
+        rejectButton.innerText = "Reject";
+        rejectButton.addEventListener("click", () => {
+          item.remove();
+        });
+
+        item.appendChild(acceptButton);
+        item.appendChild(rejectButton);
+
+        list.appendChild(item);
+      });
+    </script>
+  </body>
+</html>

@@ -47,6 +47,32 @@
       </div>
     </div>
 
+    <div
+      style="
+        position: absolute;
+        bottom: 5vw;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 3vw;
+      "
+    >
+      <div
+        style="max-width: 50vw; margin: 0 auto; text-align: center"
+        id="message"
+      ></div>
+    </div>
+
+    <div style="position: absolute; top: 2vw; right: 2vw">
+      <h3 style="font-size: 2vw; font-weight: normal">
+        Wi-Fi: <strong>Hack Club</strong>
+      </h3>
+      <h3 style="font-size: 2vw; font-weight: normal">
+        Password: <strong>dinosaurbbq</strong>
+      </h3>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -58,6 +84,21 @@
           emojis: [emoji],
         });
       });
+
+      let timeout;
+
+      socket.on("message", (message) => {
+        document.getElementById("message").innerText = `"${message}"`;
+
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+
+        timeout = setTimeout(() => {
+          document.getElementById("message").innerText = "";
+        }, 10000);
+      });
+
       socket.on("color", (color) => {
         document.body.style.backgroundColor = color;
       });

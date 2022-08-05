@@ -2,7 +2,17 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      * {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
       body {
         background-color: black;
       }
@@ -52,6 +62,26 @@
       ></div>
     </div>
 
+    <form id="message">
+      <input
+        type="text"
+        name="message"
+        style="
+          width: 300px;
+          margin: 0 auto;
+          display: block;
+          background-color: rgb(47, 47, 47);
+          border-radius: 999px;
+          padding: 10px 15px;
+          margin-top: 20px;
+          border: none;
+          color: white;
+        "
+        placeholder="Enter a message..."
+        required
+      />
+    </form>
+
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -77,6 +107,12 @@
           socket.emit("color", color);
         });
       }
+
+      document.getElementById("message").addEventListener("submit", (e) => {
+        e.preventDefault();
+        socket.emit("message", e.target.message.value);
+        e.target.reset();
+      });
     </script>
   </body>
 </html>
