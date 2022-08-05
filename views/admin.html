@@ -9,6 +9,13 @@
   <body>
     <h1>do not refresh this page</h1>
     <h3>or you will lose all in-review messages</h3>
+
+    <form id="form">
+      <input type="text" name="message" />
+    </form>
+
+    <button id="refresh">Refresh display</button>
+
     <ul id="list"></ul>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -39,6 +46,16 @@
         item.appendChild(rejectButton);
 
         list.appendChild(item);
+      });
+
+      document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        socket.emit("acceptMessage", e.target.message.value.trim());
+        e.target.reset();
+      });
+
+      document.getElementById("refresh").addEventListener("click", () => {
+        socket.emit("refresh");
       });
     </script>
   </body>

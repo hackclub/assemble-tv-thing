@@ -27,6 +27,10 @@ io.on("connection", (socket) => {
   socket.on("acceptMessage", (message) => {
     io.emit("message", message);
   });
+
+  socket.on("refresh", () => {
+    io.emit("refresh");
+  });
 });
 
 app.get("/", (req, res) => {

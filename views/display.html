@@ -79,6 +79,10 @@
       const socket = io();
       const jsConfetti = new JSConfetti();
 
+      socket.on("refresh", () => {
+        location.reload();
+      });
+
       socket.on("emoji", (emoji) => {
         jsConfetti.addConfetti({
           emojis: [emoji],

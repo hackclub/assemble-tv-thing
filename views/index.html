@@ -110,7 +110,7 @@
 
       document.getElementById("message").addEventListener("submit", (e) => {
         e.preventDefault();
-        socket.emit("message", e.target.message.value);
+        socket.emit("message", e.target.message.value.trim());
         e.target.reset();
       });
     </script>
