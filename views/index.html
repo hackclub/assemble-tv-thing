@@ -26,7 +26,7 @@
     </style>
   </head>
   <body>
-    <!-- <div id="emojis"></div>
+    <div id="emojis"></div>
     <div
       style="
         display: flex;
@@ -80,29 +80,6 @@
         placeholder="Enter a message..."
         required
       />
-    </form> -->
-
-    <form id="css">
-      <textarea
-        name="css"
-        cols="30"
-        rows="10"
-        style="
-          width: 300px;
-          margin: 0 auto;
-          display: block;
-          background-color: rgb(47, 47, 47);
-          border-radius: 10px;
-          padding: 10px 15px;
-          margin-top: 20px;
-          border: none;
-          color: white;
-        "
-        placeholder="Custom CSS?????"
-        required
-      ></textarea>
-
-      <button>submit</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
@@ -118,7 +95,7 @@
 
       picker.style.margin = "0 auto";
 
-      // document.getElementById("emojis").appendChild(picker);
+      document.getElementById("emojis").appendChild(picker);
 
       const colors = document.getElementsByClassName("color");
       for (let i = 0; i < colors.length; i++) {
@@ -131,15 +108,9 @@
         });
       }
 
-      // document.getElementById("message").addEventListener("submit", (e) => {
-      //   e.preventDefault();
-      //   socket.emit("message", e.target.message.value.trim());
-      //   e.target.reset();
-      // });
-
-      document.getElementById("css").addEventListener("submit", (e) => {
+      document.getElementById("message").addEventListener("submit", (e) => {
         e.preventDefault();
-        socket.emit("css", e.target.css.value.trim());
+        socket.emit("message", e.target.message.value.trim());
         e.target.reset();
       });
     </script>
