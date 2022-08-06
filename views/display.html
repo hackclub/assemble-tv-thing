@@ -92,7 +92,7 @@
       let timeout;
 
       socket.on("message", (message) => {
-        document.getElementById("message").innerText = `"${message}"`;
+        document.getElementById("message").innerText = `“${message}"`;
 
         if (timeout) {
           clearTimeout(timeout);
