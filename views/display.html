@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
 
-    <style>
+    <style id="style">
       * {
         font-family: "Space Grotesk", sans-serif;
         margin: 0;
@@ -19,8 +19,6 @@
         background-color: black;
         color: #fafafa;
         transition: background-color 100ms ease-in-out;
-
-        transform: rotate(180deg);
       }
     </style>
   </head>
@@ -63,7 +61,9 @@
       <div
         style="max-width: 50vw; margin: 0 auto; text-align: center"
         id="message"
-      ></div>
+      >
+        <i>Now with custom CSS!</i>
+      </div>
     </div>
 
     <div style="position: absolute; top: 2vw; right: 2vw">
@@ -103,6 +103,10 @@
         timeout = setTimeout(() => {
           document.getElementById("message").innerText = "";
         }, 10000);
+      });
+
+      socket.on("css", (styles) => {
+        document.getElementById("style").append("\n" + styles);
       });
 
       socket.on("color", (color) => {
